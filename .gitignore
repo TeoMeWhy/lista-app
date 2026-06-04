@@ -1,0 +1,6 @@
+*.env
+*.jpg
+*.csv
+*.db
+.vscode
+__pycache__
