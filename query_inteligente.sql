@@ -1,8 +1,19 @@
-WITH tb_lag AS (
+WITH tb_compras AS (
+
+    SELECT dt_compra,
+        produto,
+        avg(valor_produto) AS valor_produto
+
+    FROM compras
+    GROUP BY dt_compra, produto
+
+),
+
+tb_lag AS (
 
     SELECT *,
         lag(dt_compra) OVER (PARTITION BY produto ORDER BY dt_compra) AS dt_anterior
-    FROM compras
+    FROM tb_compras
     ORDER BY produto, dt_compra
 
 ),
@@ -23,12 +34,18 @@ tb_stats_produto AS (
         avg(valor_produto) AS media_valor
     FROM compras
     GROUP BY produto
+),
+
+tb_final AS (
+
+    SELECT t1.*,
+        t2.avg_diff_dias,
+        julianday('now') - julianday(dt_ultima_compra) as dias_ult_compra
+
+    FROM tb_stats_produto AS t1
+    LEFT JOIN tb_avg AS t2
+    ON t1.produto = t2.produto
+
 )
 
-SELECT t1.*,
-       t2.avg_diff_dias,
-       julianday('now') - julianday(dt_ultima_compra) as dias_ult_compra
-
-FROM tb_stats_produto AS t1
-LEFT JOIN tb_avg AS t2
-ON t1.produto = t2.produto
+SELECT * FROM tb_final

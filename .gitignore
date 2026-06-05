@@ -1,5 +1,6 @@
 *.env
 *.jpg
+*.jpeg
 *.csv
 *.db
 .vscode

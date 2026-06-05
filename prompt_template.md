@@ -7,7 +7,7 @@ Considere a imagem de nota fiscal para extrair as seguintes informações:
 
 ## Nome do Produto
 
-Para o nome do produto, considere apenas o nome do objeto, descartando marca, medidas, peso e quantidade. Por exemplo, a lista a seguir:
+Para o nome do produto, considere apenas o nome do objeto, descartando marca, medidas, peso e quantidade. Use a lista a seguir como referência:
 
 {produtos}
 
