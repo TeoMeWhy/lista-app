@@ -3,5 +3,8 @@
 *.jpeg
 *.csv
 *.db
+
+secrets.toml
+
 .vscode
 __pycache__
