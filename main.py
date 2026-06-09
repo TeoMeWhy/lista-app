@@ -126,7 +126,7 @@ else:
 
         valor = st.number_input("Valor", min_value=0.01)
 
-        if st.button("Registrar compra"):
+        if st.button("Registrar compra", key="produto_csv"):
             data = {
                 "dt_compra":datetime.datetime.now().strftime("%Y-%m-%d"),
                 "produto": produto.title(),
@@ -146,7 +146,7 @@ else:
             df = pd.read_csv(open_file)
             df = st.data_editor(df)
             
-            if st.button("Registrar Dados!"):
+            if st.button("Registrar Dados!", key="historico_csv"):
                 df.to_sql("compras", engine, if_exists="append", index=False)
                 st.success("Dados registrados com sucesso!")
                 time.sleep(1)
@@ -160,7 +160,7 @@ else:
         if open_img:
             df = process_nf(prompt=prompt, resposta_template=resposta, produtos=produtos, img_file=open_img)
             df = st.data_editor(df)
-            if st.button("Registrar Dados!"):
+            if st.button("Registrar Dados!", key="nota_fiscal"):
                 df.to_sql("compras", engine, if_exists="append", index=False)
                 st.success("Dados registrados com sucesso!")
                 time.sleep(1)
