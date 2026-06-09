@@ -1,0 +1,5 @@
+google-genai==2.8.0
+pandas==3.0.3
+python-dotenv==1.2.2
+SQLAlchemy==2.0.50
+streamlit[auth]==1.58.0
